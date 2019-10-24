@@ -18,7 +18,7 @@
 ##############################################################################
 ###### Fill out your git clone folder and Magma tag without ending "/" #######
 ##############################################################################
-GIT_CLONE_PATH="/XXX/YYY/ZZZ";
+GIT_CLONE_PATH="/Users/wojciechnawrot/Documents/Wiedza/06.MAGMA/GIT99";
 MAGMA_TAG="v1.0.0-alpha1";
 ##############################################################################
 
@@ -52,6 +52,7 @@ CWAG_PATH="$GIT_CLONE_PATH/magma/cwf/gateway/";
 
 
 # Checking prerequisities
+clear; tput setaf 1; echo -e "Starting Magma deployment";
 tput setaf 2; echo -e "\n\n[Step 1.] Checking software versions ...\n";
 tput setaf 7; echo -e "  Virtualbox: `tput setaf 1; vboxmanage --version`";
 tput setaf 7; echo -e "  Python: `tput setaf 1; python3 --version`";
@@ -73,8 +74,7 @@ fi
 tput setaf 2; echo -e "\n\n[Step 2.] Cloning Magma tag <$MAGMA_TAG> into <$GIT_CLONE_PATH>\n";
 
 if [ -d "$GIT_CLONE_PATH/magma" ]; then
-   tput setaf 3; echo -e "  Magma repo already exists in `tput setaf 1`$GIT_CLONE_PATH.\n\n`tput setaf 3`  Press:\n `tput setaf 1`  <p>`tput setaf 3` to purge the directory and clone new repo \n`tput setaf 1`   <s>`tput setaf 3` to skip cloning and contnue with existing repo\n`tput setaf 1`   <i>`tput setaf 3` to interrupt the script"
-  
+   tput setaf 3; echo -e "  Magma repo with tag `tput setaf 1; cd $GIT_CLONE_PATH/magma; git describe --tags; tput setaf 3`  exists in `tput setaf 1`$GIT_CLONE_PATH.\n\n`tput setaf 3`  Press:\n `tput setaf 1`  <p>`tput setaf 3` to purge the directory and clone new repo with tag `tput setaf 1`$MAGMA_TAG\n   <s>`tput setaf 3` to skip cloning and contnue with existing tag `tput setaf 1; cd $GIT_CLONE_PATH/magma; git describe --tags; tput setaf 1`   <u>`tput setaf 3` to perform <git pull> for existing tag `tput setaf 1; cd $GIT_CLONE_PATH/magma; git describe --tags; tput setaf 1`   <i>`tput setaf 3` to interrupt the script\n\n  NOTE: This script was tested with Magma tag <v1.0.0-alpha1>. Using it with different tags may need syntax modification!";
    while true; do
    read -rsn1 input
      if [ "$input" = "i" ]; then
@@ -82,11 +82,15 @@ if [ -d "$GIT_CLONE_PATH/magma" ]; then
      elif [ "$input" = "p" ]; then
 	cd $GIT_CLONE_PATH;	
         tput setaf 3; echo -e "\n  Purging old Magma repo and cloning new one ...\n";rm -Rf *;
-        tput setaf 7; echo -e "git clone https://github.com/facebookincubator/magma -b $MAGMA_TAG";
+        tput setaf 7; git clone https://github.com/facebookincubator/magma -b $MAGMA_TAG;
         tput setaf 3; echo -e "  *** DONE ***\n\nYou are currently on tag `cd magma; git describe --tags`\n";
 	break;
      elif [ "$input" = "s" ]; then 
-	tput setaf 3; echo -e "\n  Skipping git clone and continuing with existing repo ..."; tput setaf 7
+	tput setaf 3; echo -e "\n  Skipping git clone and continuing with existing repo on tag `cd $GIT_CLONE_PATH/magma; git describe --tags`"; tput setaf 7
+        break;
+     elif [ "$input" = "u" ]; then
+        tput setaf 3; echo -e "\n  Performing <git pull origin> for tag `cd $GIT_CLONE_PATH/magma; git describe --tags`\n"; tput setaf 7;
+	cd $GIT_CLONE_PATH/magma; git pull origin `cd $GIT_CLONE_PATH/magma; git describe --tags`;
         break;
      fi
      done
@@ -94,7 +98,7 @@ else
   cd $GIT_CLONE_PATH;
   tput setaf 3; echo -e "\n  Clonning Magma repo ...\n";
   tput setaf 7; git clone https://github.com/facebookincubator/magma -b $MAGMA_TAG;
-  tput setaf 3; echo -e "  *** DONE ***\n\n  You are currently on tag `cd magma; git describe --tags`\n";
+  tput setaf 3; echo -e "\n  *** DONE ***\n\n  You are currently on tag `tput setaf 1; cd magma; git describe --tags`\n";
   tput setaf 7;
       	
 fi
@@ -140,11 +144,18 @@ while true; do read -rsn1 input;
      tput setaf 7; docker-compose up -d; wait;
      tput setaf 3; echo -e "\n  *** DONE ***\n\n  Waiting 90s for the containers to start up..."; countdown 90;
      tput setaf 7; docker-compose ps;
-     tput setaf 3; echo -e "\n  *** DONE ***\n\n  Restarting due to possibly unhealthy magmalte_magmalte_1 container...\n";
-     tput setaf 7; docker-compose restart; wait;
-     tput setaf 3; echo -e "\n  *** DONE ***\n\n  Waiting another 90s for the containers to start up healthy..."; countdown 90;
-     tput setaf 7; docker-compose ps;
-     tput setaf 3; echo -e "\n  *** DONE ***\n\n  There should be 3 healthy containers.\n";
+     tput setaf 3; echo -e "\n  If any of listed containers is unhealthy press `tput setaf 1`<r>`tput setaf 3` to perform <docker-compose restart>. Otherwise press `tput setaf 1`<c>`tput setaf 3` to continue\n";
+     while true; do read -rsn1 input; 
+	     if [ "$input" = "r" ]; then 
+		tput setaf 7; docker-compose restart;
+		tput setaf 3; echo -e "\n  *** DONE ***\n\n  Waiting another 90s for the containers to start up healthy..."; countdown 90; 
+		tput setaf 7; docker-compose ps; 
+	        tput setaf 3; echo -e "\n  *** DONE ***\n\n  There should be 3 healthy containers.\n";
+		tput setaf 3; echo -e "  If any of listed containers is still unhealthy press `tput setaf 1`<r>`tput setaf 3` to perform <docker-compose restart>. Otherwise press `tput setaf 1`<c>`tput setaf 3` to continue\n"; 
+	     elif [ "$input" = "c" ]; then 
+	        break; 
+            fi; 
+     done;
      tput setaf 5; echo -e "  4.3. Running dev_setup.sh ...\n";
      tput setaf 7; ./scripts/dev_setup.sh; wait;
      tput setaf 3; echo -e "\n  *** DONE ***\n\n  Checking /etc/hosts of magmalte service for host.docker.internal entry ...\n";
@@ -247,16 +258,16 @@ while true; do read -rsn1 input;
        tput setaf 5; echo -e "  7.2. Performing make (it can take up to few hours!) ...\n";
        tput setaf 7; make run;
        tput setaf 3; echo -e "\n  *** DONE ***\n";
-       tput setaf 5; echo -e "`\n  7.3. Restarting AGW servicess ...";
+       tput setaf 5; echo -e "\n  7.3. Restarting AGW servicess ...";
        sudo service magma@* stop; wait; sudo service magma@magmad restart; sleep 10;
        tput setaf 3; echo -e "\n  *** DONE ***\n";
-       tput setaf 3; echo -e "AGW magma services status: `sudo systemctl is-active magma@* | wc -l` of 13 services active"';
-     tput setaf 5; echo -e "`  7.4 Creating <test> network and registering AGW in Orc8r as <gw1>";
-     tput setaf 3; echo -e "`\n\n  If you want to change AGW and/or network name edit <$GIT_CLONE_PATH/magma/orc8r/tools/fab/dev_utils.py>\n";
+       tput setaf 3; echo -e "  AGW magma services status: `sudo systemctl is-active magma@* | wc -l` of 13 services active"';
+     tput setaf 5; echo -e "\n  7.4 Creating <test> network and registering AGW in Orc8r as <gw1>";
+     tput setaf 3; echo -e "\n  If you want to change AGW and/or network name edit`tput setaf 1` <$GIT_CLONE_PATH/magma/orc8r/tools/fab/dev_utils.py>\n";
      tput setaf 1; read -p "  Press <Enter> to continue";
      tput setaf 7; fab register_vm;
      tput setaf 3; echo -e "\n  *** DONE ***\n";
-     tput setaf 3; echo -e "\n  Waiting 2 minutes for successfull checkin ...."; countdown 120;
+     tput setaf 3; echo -e "  Waiting 120s for successfull checkin ...."; countdown 120;
      vagrant ssh magma -c '
        tput setaf 7; echo -e "\n  AGW checkin status: `tput setaf 3; sudo cat /var/log/syslog | grep root:Checkin | tail -1`\n"';
      tput setaf 1; read -p "  Press <Enter> to continue";
