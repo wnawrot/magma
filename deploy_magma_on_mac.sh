@@ -18,7 +18,7 @@
 ##############################################################################
 ###### Fill out your git clone folder and Magma tag without ending "/" #######
 ##############################################################################
-GIT_CLONE_PATH="/Users/wojciechnawrot/Documents/Wiedza/06.MAGMA/GIT99";
+GIT_CLONE_PATH="/XXX/YYY/ZZZ/";
 MAGMA_TAG="v1.0.0-alpha1";
 ##############################################################################
 
