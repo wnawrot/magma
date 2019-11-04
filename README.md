@@ -34,12 +34,12 @@ Check details on Magma here: https://github.com/facebookincubator/magma
 - Added some improvements and fixed some issues
 - Tested with magma 1.0.0-alpha1 and 1.0.0-rc1
 - Perceived issues: 
-    - CWAG started successfully  on Vagrant VM but "pipelined" container is restarting
+    - [1.0.0-rc1] CWAG starts up successfully  on Vagrant VM but "pipelined" container is restarting
 
 **[Rel1.0]**
 - Initial version
 
 
 ## TODOs:
-- [] suspend / resume existing Magma deployment
+- [ ] suspend / resume existing Magma deployment
 
