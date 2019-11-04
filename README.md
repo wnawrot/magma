@@ -19,9 +19,11 @@ Check details on Magma here: https://github.com/facebookincubator/magma
 * To make sure you have enough disk space, and no remainings from old Magma deployments, reset Docker for Mac to factory defaults (*Preferences -> Reset -> Reset to Factory defaults*).
 * Delete orphanted Vbox Magma VMs (if any) to regain some disk space and to avoid conflicts.
 * Before executing deploy_magma_on_mac.sh:
+
    * create git clone directory, 
    * edit the script and fill out git clone directory you created,
    * specify Magma tag you want to deploy (for available tags run "git ls-remote --tags https://github.com/facebookincubator/magma")
+
 * If the script fails with any error message, fix issues, re-launch the script and skip completed steps.
 * Read script messages carefuly. Make sure you understand what you are doing.
 * Check deploy_magma_on_mac.sh release notes for Magma tags the script was tested with.
@@ -41,5 +43,5 @@ Check details on Magma here: https://github.com/facebookincubator/magma
 
 
 ## TODOs:
-- suspend / resume existing Magma deployment
-- change of some Magma git cloning options
+- [x] suspend / resume existing Magma deployment
+
