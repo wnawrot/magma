@@ -4,11 +4,11 @@
 
 The deploy_magma_on_mac.sh script installs Magma or its individual components on Mac computer including:
 
-    - Orc8r   using docker-compose on Host,
-    - NMS     using docker-compose on Host,
-    - FEG      using docker-compose on Host or Vagrant VM,
-    - CWAG  using docker-compose on Vagrant VM,
-    - AGW    using Vagrant VM.
+    - Orc8r	using docker-compose on Host,
+    - NMS	using docker-compose on Host,
+    - FEG	using docker-compose on Host or Vagrant VM,
+    - CWAG	using docker-compose on Vagrant VM,
+    - AGW	using Vagrant VM.
 
 Check details on Magma here: https://github.com/facebookincubator/magma
 
@@ -33,7 +33,8 @@ Check details on Magma here: https://github.com/facebookincubator/magma
 - removed AWG autometed registration through "fab"
 - added some improvements and fixed some issues
 - tested with magma 1.0.0-alpha1 and 1.0.0-rc1
-- issues observed: NONE
+- issues observed: 
+    - CWAG started successfully  on Vagrant VM but "pipelined" container is restarting
 
 [1.0]
 - Initial version
