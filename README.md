@@ -16,7 +16,7 @@ Check details on Magma here: https://github.com/facebookincubator/magma
 
 * Installation from scratch with all possible components may take several hours depending on available resources and Internet speed.
 * The main prerequisitie is **Docker for Mac** installed and configured with at least **4GB of RAM** (https://github.com/facebookincubator/magma/blob/v1.0.0-rc1/docs/readmes/basics/prerequisites.md).
-* To make sure you have enough disk space, and no remainings from old Magma deployments, reset Docker for Mac to factory defaults (*Preferences -> Reset -> Reset to Factory defaults*).
+* To make sure you have enough disk space, and no remainings from old Magma deployments, reset Docker for Mac to factory defaults (***Preferences -> Reset -> Reset to Factory defaults***).
 * Delete orphanted Vbox Magma VMs (if any) to regain some disk space and to avoid conflicts.
 * Before executing deploy_magma_on_mac.sh:
 
