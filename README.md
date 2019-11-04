@@ -22,7 +22,7 @@ Check details on Magma here: https://github.com/facebookincubator/magma
    * edit the script and fill out git clone directory you created,
    * specify Magma tag you want to deploy (for available tags run **git ls-remote --tags https://github.com/facebookincubator/magma**).
 
-* If the script fails with any error message, fix issues, re-launch the script and skip completed steps.
+* If the script fails with any error message, press CTRL+C, fix issues, re-launch the script and skip completed steps.
 * Read script messages carefuly. Make sure you understand what you are doing.
 * Check release notes for Magma tags the script was tested with.
 
