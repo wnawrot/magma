@@ -2,7 +2,7 @@
 
 ## Purpose:
 
-The deploy_magma_on_mac.sh script installs Magma or its individual components on Mac computer including:
+The '''deploy_magma_on_mac.sh''' script installs Magma or its individual components on Mac computer including:
 
     - Orc8r	using docker-compose on Host,
     - NMS	using docker-compose on Host,
