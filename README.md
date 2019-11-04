@@ -22,7 +22,7 @@ Check details on Magma here: https://github.com/facebookincubator/magma
 
    * create git clone directory, 
    * edit the script and fill out git clone directory you created,
-   * specify Magma tag you want to deploy (for available tags run "git ls-remote --tags https://github.com/facebookincubator/magma")
+   * specify Magma tag you want to deploy (for available tags run **git ls-remote --tags https://github.com/facebookincubator/magma**)
 
 * If the script fails with any error message, fix issues, re-launch the script and skip completed steps.
 * Read script messages carefuly. Make sure you understand what you are doing.
@@ -30,7 +30,7 @@ Check details on Magma here: https://github.com/facebookincubator/magma
 
 ## Release Notes:
 
-[1.1]
+[1.1] (4.11.2019)
 - added FEG deployment options (containerized / Vagrant VM)
 - removed AWG autometed registration through "fab"
 - added some improvements and fixed some issues
