@@ -30,7 +30,7 @@ Check details on Magma here: https://github.com/facebookincubator/magma
 
 **[Rel1.1]** (4.11.2019)
 - Added FEG deployment options (containerized / Vagrant VM)
-- Removed AWG autometed registration through "fab"
+- Removed AGW autometed registration through "fab"
 - Added some improvements and fixed some issues
 - Tested with magma 1.0.0-alpha1 and 1.0.0-rc1
 - Perceived issues: 
