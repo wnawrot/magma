@@ -96,7 +96,7 @@ fi
 cd $ORC8R_PATH;
 tput setaf 2; echo -e "\n\n[Step 3.] Bringing up Orchestrator and Metrics containers:";
 tput setaf 3; echo -e "\n  This Magma component is mandatory. If you have already deployed Orc8r you can skip this step";
-tput setaf 1; echo -e "\n  [NOTE]`tput setaf 3` Before you start Orc8r deployment make sure that `tput setaf 1`$GIT_CLONE_PATH/magma/modules.yml`tput setaf 3` contains the following modules:\n\n    native_modules:\n    - orc8r\n    - lte\n    - feg\n    - cwag\n";
+tput setaf 1; echo -e "\n  [NOTE]`tput setaf 3` Before you start Orc8r deployment make sure that `tput setaf 1`$GIT_CLONE_PATH/magma/modules.yml`tput setaf 3` contains the following modules:\n\n    native_modules:\n    - orc8r\n    - lte\n    - feg\n    - cwf\n";
 tput setaf 3; echo -e "  Press:\n `tput setaf 1`  <d>`tput setaf 3` to deploy Orc8r\n`tput setaf 1`   <s>`tput setaf 3` to skip it";
 while true; do read -rsn1 input; 
   if [ "$input" = "s" ]; then 
